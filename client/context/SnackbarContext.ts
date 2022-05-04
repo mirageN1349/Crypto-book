@@ -1,7 +1,7 @@
-import { createContext } from 'react';
+import { createContext, ReactNode } from 'react';
 
 type Context = {
-  addAlert: (args: { message: string; type?: 'success' | 'error' }) => void;
+  addAlert: (args: { message: string | ReactNode; type?: 'success' | 'error' | 'info' }) => void;
 };
 
 export const SnackbarContext = createContext<Context>({

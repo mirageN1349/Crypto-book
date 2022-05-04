@@ -49,16 +49,15 @@ const ViewContact: NextPage = () => {
       const github = await contact.github();
       setDiscord(discord);
       setGithub(github);
-      setIsLoading(false);
-      setIsGlobalLoading(false);
     } catch (err: unknown) {
       addAlert({
         message: (err as { message: string }).message,
       });
-      setIsLoading(false);
-      setIsGlobalLoading(false);
       setDiscord('');
       setGithub('');
+    } finally {
+      setIsGlobalLoading(false);
+      setIsLoading(false);
     }
   };
 

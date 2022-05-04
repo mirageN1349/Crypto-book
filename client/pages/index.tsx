@@ -25,10 +25,10 @@ const Home: NextPage = () => {
         if (!signer) return;
         const address = await signer.getAddress();
         if (address) setMyAddress(address);
-        setIsLoading(false);
       } catch (error) {
-        setIsLoading(false);
         console.error(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -36,7 +36,7 @@ const Home: NextPage = () => {
       getContactsByAddress(myAddress).then(res => setContacts(res));
     }
     getAddress();
-  }, [myAddress, signer]);
+  }, [myAddress, signer, setIsLoading]);
 
   const handleAddressClick = (e: MouseEvent<HTMLParagraphElement>) => {
     if (e.target instanceof HTMLParagraphElement) {

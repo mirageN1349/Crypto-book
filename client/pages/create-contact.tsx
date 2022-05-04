@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import type { NextPage } from 'next';
-import { Box, TextField } from '@mui/material';
+import { Box, Link, TextField } from '@mui/material';
 import Button from '../components/Button';
 import { useAlert } from '../hooks/useAlert';
 import { useGlobalLoading } from '../hooks/useGlobalLoading';
@@ -48,19 +48,30 @@ const CreateContact: NextPage = () => {
       const { hash } = await factory['createContact(string,string)'](query.github, query.discord, {
         from: fromAddress,
       });
+      addAlert({
+        type: 'info',
+        message: (
+          <>
+            Транзакция отправлена в обработку. Чтобы отследить нажмите:{' '}
+            <Link target="_blank" href={`https://rinkeby.etherscan.io/tx/${hash}`}>
+              отследить
+            </Link>
+          </>
+        ),
+      });
       await provider.waitForTransaction(hash);
       addAlert({
         type: 'success',
         message: 'Данные добавлены в блокчейн, дальнейшее удаление или редактирование невозможно =]',
       });
-      setIsLoading(false);
-      setIsGlobalLoading(false);
     } catch (err: unknown) {
-      setIsLoading(false);
       setIsGlobalLoading(false);
       addAlert({
         message: (err as { message: string }).message,
       });
+    } finally {
+      setIsGlobalLoading(false);
+      setIsLoading(false);
     }
   };
 

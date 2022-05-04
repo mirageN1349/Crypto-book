@@ -11,13 +11,13 @@ type Props = {
 
 export function MainLayout({ children }: Props) {
   const [openAlert, setOpenAlert] = useState(false);
-  const [message, setMessage] = useState('');
-  const [type, setType] = useState<'success' | 'error'>('error');
+  const [message, setMessage] = useState<string | ReactNode>('');
+  const [type, setType] = useState<'success' | 'error' | 'info'>('error');
   const [isLoading, setIsLoading] = useState(false);
 
   const onCloseAlert = () => setOpenAlert(false);
 
-  const addAlert = ({ message, type }: { message: string; type?: 'success' | 'error' }) => {
+  const addAlert = ({ message, type }: { message: string | ReactNode; type?: 'success' | 'error' | 'info' }) => {
     setMessage(message);
     setType(type || 'error');
     setOpenAlert(true);

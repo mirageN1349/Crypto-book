@@ -1,10 +1,10 @@
 import { Alert, Snackbar as MUISnackbar } from '@mui/material';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 type Props = {
   open: boolean;
-  message: string;
-  type: 'success' | 'error';
+  message: ReactNode | string;
+  type: 'success' | 'error' | 'info';
   onClose: () => void;
 };
 
