@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import provider from './registerProvider';
-import { Contact as ClassContact } from '../../eth/typechain/Contact';
+import { Contact as ClassContact } from '../@types/Contact';
 
 const abi = [
   {

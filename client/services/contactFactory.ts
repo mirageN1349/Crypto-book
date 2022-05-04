@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { ContactFactory } from '../../eth/typechain/ContactFactory';
+import { ContactFactory } from '../@types/ContactFactory';
 import provider from './registerProvider';
 
 const abi = [
